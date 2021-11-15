@@ -1,15 +1,21 @@
 package com.sample.test.demo;
 
 import static org.testng.Assert.fail;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 
 public class TestBase {
 
-    private Configuration config;
-    protected WebDriver driver;
+    protected Configuration config;
+    public static WebDriver driver;
     protected String url;
 
     @BeforeClass(alwaysRun = true)
@@ -41,7 +47,10 @@ public class TestBase {
                 System.setProperty("webdriver.chrome.driver",
                         "src/test/resources/chromedriver/windows/chromedriver.exe");
             }
-            driver = new ChromeDriver();
+            ChromeOptions capability = new ChromeOptions();
+            capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+            capability.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS,true);
+            driver = new ChromeDriver(capability);
         }
         else {
             fail("Unsupported bfrowser " + config.getBrowser());
@@ -49,5 +58,17 @@ public class TestBase {
        
     }
 
+    // Method to make valid selection on given dropdown
+    // parameters used : dropdown and the selection value
+    public void makeASelectionFromDropDownList(String selectedValue, WebElement ele){
+        Select select = new Select(ele);
+        select.selectByValue(selectedValue);
+    }
+    // Method to make valid radio button selection
+    // parameters used : webelement of radio button type.
+    public void makeASelectionFromRadioButton(WebElement ele)
+    {
+        ele.click();
+    }
 
 }
