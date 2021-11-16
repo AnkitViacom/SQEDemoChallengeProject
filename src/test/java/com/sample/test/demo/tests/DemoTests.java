@@ -1,5 +1,6 @@
 package com.sample.test.demo.tests;
 
+import org.openqa.selenium.*;
 import org.testng.annotations.Test;
 import com.sample.test.demo.TestBase;
 import utils.ElementFetch;
@@ -25,7 +26,7 @@ public class DemoTests extends TestBase {
         //enter customer's pickup information
         elementFetch.getWebElement("ID","name").sendKeys("Test Customer");
         elementFetch.getWebElement("ID","phone").sendKeys("8888888888");
-        elementFetch.getWebElement("ID","email").sendKeys("testemail@test.com");
+        elementFetch.getWebElement("ID","phone").sendKeys("testemail@test.com");
 
         //make radio selection
         makeASelectionFromRadioButton(elementFetch.getWebElement("ID","ccpayment"));
@@ -37,56 +38,17 @@ public class DemoTests extends TestBase {
             // matching partial text here for Order confirmation message in dialog box. This
             // can be further enhanced by concatenating exact order value and pizza type in the
             // match string here.
-            if(dialogBoxContent.contains("Thank you for your order! TOTAL:")) {
-                System.out.println("Test passed as the Order for pizza type" + pizzaTypeSelected + "has been placed successfully!!");
-            }
+            dialogBoxContent.contains("Thank you for your order! TOTAL:");
+            System.out.println("Test passed as the Order for pizza type"+ pizzaTypeSelected + "has been placed successfully!!");
         } else{
             System.out.println("Test Failed as the Order for pizza type" + pizzaTypeSelected+ "could not be placed !!");
         }
 
     }
-
-    /*author : Ankit Jain
-    Date : 11/14/2021
-    Desctiption : Happy Path Test Case to Place an Order on the Demo pizza website.
-    Variation : Order placed with cash or pickup option to ensure this works fine.
-*/
-    @Test
-    public void bookAPizzaHappyPathEndtoEndScenarioCashOption()  {
-        // make selection from drop down
-        makeASelectionFromDropDownList(pizzaTypeSelected,elementFetch.getWebElement("ID","pizza1Pizza"));
-        makeASelectionFromDropDownList("Diced Mango",elementFetch.getWebElement("XPATH","//div[@id='pizza1']//select[@class='toppings1']"));
-        makeASelectionFromDropDownList("Extra cheese",elementFetch.getWebElement("XPATH","//div[@id='pizza1']//select[@class='toppings2']"));
-        elementFetch.getWebElement("ID","pizza1Qty").clear();
-        elementFetch.getWebElement("ID","pizza1Qty").sendKeys("1");
-        //enter customer's pickup information
-        elementFetch.getWebElement("ID","name").sendKeys("Test Customer");
-        elementFetch.getWebElement("ID","phone").sendKeys("8888888888");
-        elementFetch.getWebElement("ID","email").sendKeys("testemail@test.com");
-
-        //make radio selection
-        makeASelectionFromRadioButton(elementFetch.getWebElement("ID","cashpayment"));
-        // place order
-        elementFetch.getWebElement("ID","placeOrder");
-        // check for dialog box and order confirmation
-        if(elementFetch.getWebElement("ID","dialog").isDisplayed()){
-            String dialogBoxContent = elementFetch.getWebElement("XPATH","//div[@id='dialog']/p").getText();
-            // matching partial text here for Order confirmation message in dialog box. This
-            // can be further enhanced by concatenating exact order value and pizza type in the
-            // match string here.
-            if(dialogBoxContent.contains("Thank you for your order! TOTAL:")) {
-                System.out.println("Test passed as the Order for pizza type" + pizzaTypeSelected + "has been placed successfully!!");
-            }
-        } else{
-            System.out.println("Test Failed as the Order for pizza type" + pizzaTypeSelected+ "could not be placed !!");
-        }
-
-    }
-
-    /*********************************************************************/
+/*********************************************************************/
     /*author : Ankit Jain
         Date : 11/14/2021
-        Desctiption : Error/ negative Scenario Test Case to Place an Order on the Demo pizza website and ensure failure message shows up.
+        Desctiption : Error/ negative Scenario Test Case to Place an Order on the Demo pizza website and ensure failure.
     */
     @Test
     public void bookAPizzaErrorPathEndtoEndScenario() {
@@ -98,7 +60,8 @@ public class DemoTests extends TestBase {
         elementFetch.getWebElement("ID", "pizza1Qty").sendKeys("1");
 
         //intentionally not filling up customer's pickup information
-        //make radio selection below
+
+        //make radio selection
         makeASelectionFromRadioButton(elementFetch.getWebElement("ID", "ccpayment"));
         // place order
         elementFetch.getWebElement("ID", "placeOrder");
@@ -134,7 +97,7 @@ public class DemoTests extends TestBase {
         //enter customer's pickup information
         elementFetch.getWebElement("ID","name").sendKeys("Test Customer");
         elementFetch.getWebElement("ID","phone").sendKeys("8888888888");
-        elementFetch.getWebElement("ID","email").sendKeys("testemail@test.com");
+        elementFetch.getWebElement("ID","phone").sendKeys("testemail@test.com");
 
         //make radio selection
         makeASelectionFromRadioButton(elementFetch.getWebElement("ID","ccpayment"));
@@ -144,9 +107,8 @@ public class DemoTests extends TestBase {
         if(elementFetch.getWebElement("ID","dialog").isDisplayed()){
             String dialogBoxContent = elementFetch.getWebElement("XPATH","//div[@id='dialog']/p").getText();
             // matching text from dialog box for total as Zero.
-           if(dialogBoxContent.contains("Thank you for your order! TOTAL: 0")) {
-               System.out.println("Test passed as the total is showing as Zero!!");
-           }
+            dialogBoxContent.contains("Thank you for your order! TOTAL: 0");
+            System.out.println("Test passed as the total is showing as Zero!!");
         } else{
             System.out.println("Test Failed as the Order total is not shown as Zero !!");
         }
@@ -156,7 +118,7 @@ public class DemoTests extends TestBase {
 /*************************************************/
     /*author : Ankit Jain
         Date : 11/14/2021
-        Desctiption : Switch pizza and toppings selection before Placing final Order on the Demo pizza website.
+        Desctiption : Switch pizza and toppings before Placing final Order on the Demo pizza website.
     */
     @Test
     public void switchOptionsForPizzaSelectionScenario()  {
@@ -169,7 +131,7 @@ public class DemoTests extends TestBase {
         //enter customer's pickup information
         elementFetch.getWebElement("ID","name").sendKeys("Test Customer");
         elementFetch.getWebElement("ID","phone").sendKeys("8888888888");
-        elementFetch.getWebElement("ID","email").sendKeys("testemail@test.com");
+        elementFetch.getWebElement("ID","phone").sendKeys("testemail@test.com");
         // changing selectoin
         makeASelectionFromDropDownList(pizzaTypeAlternateSelection,elementFetch.getWebElement("ID","pizza1Pizza"));
         makeASelectionFromDropDownList("Olives",elementFetch.getWebElement("XPATH","//div[@id='pizza1']//select[@class='toppings1']"));
@@ -184,9 +146,8 @@ public class DemoTests extends TestBase {
             // matching partial text here for Order confirmation message in dialog box. This
             // can be further enhanced by concatenating exact order value and pizza type in the
             // match string here.
-            if(dialogBoxContent.contains("Thank you for your order! TOTAL:")){
-                System.out.println("Test passed as the Order for pizza type"+ pizzaTypeAlternateSelection + "has been placed successfully!!");
-            }
+            dialogBoxContent.contains("Thank you for your order! TOTAL:");
+            System.out.println("Test passed as the Order for pizza type"+ pizzaTypeAlternateSelection + "has been placed successfully!!");
         } else{
             System.out.println("Test Failed as the Order for pizza type" + pizzaTypeAlternateSelection+ "could not be placed !!");
         }
