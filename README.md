@@ -47,8 +47,6 @@ We will be evaluating
 
 #### Test Cases
 
-#### Test Cases
-
 1. Need to test end to end flow for pizza selection ,toppings selection, check the total cost amount , writing customer details in relevant text boxes, radio
    button selection for payment option and finally placing order.
 2. To verify that switching between pizza and topping selection is possible in real time.
@@ -67,4 +65,36 @@ We will be evaluating
 12 .Functionality of reset button should be verified, when clicked it should reset every field on page to default values.
 13. No same topping selection should be allowed in both the topping dropdown at the same time. it should omit the topping selection from other drop down when already 
     selected in one of the dropdown.
+
+
+
+###### Defects 
+
+ 1. Same toppings in Toppings 1 and Toppings 2 drop down can be selected at the same time. This should make unique selection.
+the topping selected in other drop down should disappear from current dropdown options.
+
+2. Negative quantity is getting entered which should not be allowed.
+
+3. Cost is also thus calculated in negative which is not a valid approach.
+
+4. Orders are getting placed with these negative values. Which is wrong.
+
+5. Toppings selection is not mandatory even if pizza type selected has a topping associated in description. A user must be made to 
+select the topping if its described in pizza type.
+
+6. Name input field is allowing alphabets,numeric values and special characters to be entered. It must be limited to alphabets only. Length can be 
+restricted upto a certain length.
+
+7. Phone input field is allowing alphabets,numeric values and special characters to be entered. It must be limited to numeric value with a length 
+restriction.
+
+8. The order is getting placed in following scenarios which is wrong.
+  8.a none of the payments option are selected.(no radio option selectedO)
+  8.b both payment option are selected at the same time.(both radio option getting selected at the same time)
+
+9. After clicking on Reset radio button, both the topping selection do not default to option "choose a topping value". Instead the toppings selection
+ remain as it is as they were before the reset.
+
+10. Email field takes alphanumeric values and special characters too and allows user to enter and proceed with an invalid email id which does not contain an @ sign. 
+    This is a must requirement in this field and should prompt invalid email id message to user.
 

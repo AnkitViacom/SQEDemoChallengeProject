@@ -12,12 +12,18 @@ the topping selected in other drop down should disappear from current dropdown o
 5. Toppings selection is not mandatory even if pizza type selected has a topping associated in description. A user must be made to 
 select the topping if its described in pizza type.
 
-6. Name input field is allowing both alphabets and numeric values to be entered. It must be limited to alphabets only. Length can be 
+6. Name input field is allowing alphabets,numeric values and special characters to be entered. It must be limited to alphabets only. Length can be 
 restricted upto a certain length.
 
-7. Phone input field is allowing both alphabets and numeric values to be entered. It must be limited to numeric value with a length 
+7. Phone input field is allowing alphabets,numeric values and special characters to be entered. It must be limited to numeric value with a length 
 restriction.
 
 8. The order is getting placed in following scenarios which is wrong.
   8.a none of the payments option are selected.(no radio option selectedO)
   8.b both payment option are selected at the same time.(both radio option getting selected at the same time)
+
+9. After clicking on Reset radio button, both the topping selection do not default to option "choose a topping value". Instead the toppings selection
+ remain as it is as they were before the reset.
+
+10. Email field takes alphanumeric values and special characters too and allows user to enter and proceed with an invalid email id which does not contain an @ sign. 
+    This is a must requirement in this field and should prompt invalid email id message to user.
