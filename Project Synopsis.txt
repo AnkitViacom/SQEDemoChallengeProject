@@ -1,0 +1,30 @@
+Synopsis for Pizza order application UI automation
+
+
+Prepared By : Ankit Jain
+For : SQE Role Challange excercise.
+Date : 11/15/2021
+Place : Atlanta, GA
+
+
+Brief : As can be seen this webpage for booking a Pizza has a UI which presents an end user to select pizza type along with 
+	number and types of toppings.
+
+	After having the pizza and toppings selected the user has to place the quantity of pizzas to be ordered.
+        The cost based on user selection and quantity auto-populates. This is working fine.
+	
+	Next area is Pickup information where the user has to provide basic details such as Name, email id and Phone number.
+        
+	The last section deals with providing the payment method in form of radio buttons. Credit card and cash option.
+
+	At the end user is allowed to place the order or to reset to default values on page on all areas mentioned above.
+
+
+Test cases that have been designed here are as follows :
+1. Happy path scenario end to end flow with Credit Card as payment option.
+2. Variation in Happy path scenario end to end flow with Cash on pickup as payment option.
+3. Error/ negative Scenario Test Case to Place an Order on the Demo pizza website and ensure failure message shows up.
+4. No pizza quantity entered scenario ,this should Place an Order without quantity to ensure total should be reflected as zero.
+5. Switch pizza and toppings selection before Placing final Order on the Demo pizza website.
+
+Also i have attached total of 10 Defects/bugs in the Pizza order UI behavior as identified in a separate text file here.
